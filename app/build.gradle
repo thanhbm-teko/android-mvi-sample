@@ -1,0 +1,103 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "vn.phongvu.android.nhanvienphongvu"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables {
+            useSupportLibrary = true
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+    }
+    sourceSets {
+        String sharedTestDir = 'src/sharedTest/java'
+        test {
+            java.srcDir sharedTestDir
+        }
+        androidTest {
+            java.srcDir sharedTestDir
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    kapt deps.room.compiler
+    kapt deps.glide.compiler
+
+    implementation deps.constraint_layout
+    implementation deps.support.core_ktx
+    implementation deps.support.app_compat
+    implementation deps.support.recyclerview
+    implementation deps.support.design
+    implementation deps.room.runtime
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    implementation deps.lifecycle.livedata_ktx
+    implementation deps.paging_ktx
+    implementation deps.kotlin.stdlib
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    implementation deps.okhttp_logging_interceptor
+    implementation deps.glide.runtime
+    implementation deps.support.fragment_runtime
+    implementation deps.support.fragment_runtime_ktx
+
+    // coroutines adapter
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+
+    // kotlin roroutines
+    implementation deps.kotlin.coroutines.android
+    implementation deps.kotlin.coroutines.core
+
+
+    // debug dependencies
+    debugImplementation deps.support.fragment_testing
+
+    // dependencies for local unit tests
+    testImplementation deps.atsl.ext_junit
+    testImplementation deps.atsl.rules
+    testImplementation deps.atsl.runner
+    testImplementation deps.espresso.intents
+    testImplementation deps.espresso.core
+    testImplementation deps.truth
+    testImplementation deps.roboelectric
+
+    // dependencies for Android unit tests
+    androidTestImplementation deps.atsl.ext_junit
+    androidTestImplementation deps.atsl.rules
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.espresso.intents
+    androidTestImplementation deps.espresso.core
+    androidTestImplementation deps.truth
+
+    // test util
+    androidTestUtil deps.orchestrator
+}

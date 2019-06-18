@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="comment_light_background">#d6d6d6</color>
+    <color name="listing_product_name">#2c2c54</color>
+    <color name="listing_product_price_color">#ff5d17</color>
+    <color name="listing_product_sku_color">#177fff</color>
+    <color name="listing_product_stock_color">#7e7e8f</color>
+</resources>
